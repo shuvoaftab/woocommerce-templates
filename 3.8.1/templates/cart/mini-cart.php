@@ -52,15 +52,26 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 						$cart_item_key
 					);
 					?>
-					<?php if ( empty( $product_permalink ) ) : ?>
-						<?php echo $thumbnail . $product_name; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-					<?php else : ?>
-						<a href="<?php echo esc_url( $product_permalink ); ?>">
+
+					<ul class='sidecart'>
+						<li class='side_cart_title'>
+						<?php if ( empty( $product_permalink ) ) : ?>
 							<?php echo $thumbnail . $product_name; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-						</a>
-					<?php endif; ?>
-					<?php echo wc_get_formatted_cart_item_data( $cart_item ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-					<?php echo apply_filters( 'woocommerce_widget_cart_item_quantity', '<span class="quantity">' . sprintf( '%s &times; %s', $cart_item['quantity'], $product_price ) . '</span>', $cart_item, $cart_item_key ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						<?php else : ?>
+							<a href="<?php echo esc_url( $product_permalink ); ?>">
+								<?php echo $thumbnail . $product_name; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+							</a>
+						<?php endif; ?>
+						</li>
+						<li class='side_cart_extra'>
+						<?php echo wc_get_formatted_cart_item_data( $cart_item ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						</li>
+						<li class='side_cart_price'>
+
+						<?php echo apply_filters( 'woocommerce_widget_cart_item_quantity', '<span class="quantity">' . sprintf( '%s &times; %s', $cart_item['quantity'], $product_price ) . '</span>', $cart_item, $cart_item_key ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						</li>
+					</ul>
+
 				</li>
 				<?php
 			}
